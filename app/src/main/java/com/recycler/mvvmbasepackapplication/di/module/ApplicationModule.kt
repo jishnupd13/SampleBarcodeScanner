@@ -1,5 +1,6 @@
 package com.recycler.mvvmbasepackapplication.di.module
 
+import com.recycler.mvvmbasepackapplication.BuildConfig
 import com.recycler.mvvmbasepackapplication.data.remote.ApiHelper
 import com.recycler.mvvmbasepackapplication.data.remote.ApiHelperImpl
 import com.recycler.mvvmbasepackapplication.data.remote.ApiService
