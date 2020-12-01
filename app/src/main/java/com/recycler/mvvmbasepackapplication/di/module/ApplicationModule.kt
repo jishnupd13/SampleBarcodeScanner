@@ -14,6 +14,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+/**
+ * created By Jishnu P Dileep
+ * 01-12-2020
+ * */
+
+
 @Module
 @InstallIn(ApplicationComponent::class)
 class ApplicationModule {

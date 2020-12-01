@@ -1,5 +1,10 @@
 package com.recycler.mvvmbasepackapplication.utils
 
+/**
+ * created By Jishnu P Dileep
+ * 01-12-2020
+ * */
+
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities

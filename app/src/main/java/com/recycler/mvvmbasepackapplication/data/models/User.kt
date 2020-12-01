@@ -2,6 +2,12 @@ package com.recycler.mvvmbasepackapplication.data.models
 
 import com.squareup.moshi.Json
 
+/**
+ * created By Jishnu P Dileep
+ * 01-12-2020
+ * */
+
+
 data class User(
     @Json(name = "id")
     val id: Int = 0,

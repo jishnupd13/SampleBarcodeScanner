@@ -11,6 +11,11 @@ import com.recycler.mvvmbasepackapplication.utils.NetworkHelper
 import com.recycler.mvvmbasepackapplication.utils.Resource
 import kotlinx.coroutines.launch
 
+/**
+ * created By Jishnu P Dileep
+ * 01-12-2020
+ * */
+
 class MainViewModel   @ViewModelInject constructor(
     private val applicationRepository: ApplicationRepository,
     private val networkHelper: NetworkHelper

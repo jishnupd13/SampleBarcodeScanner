@@ -1,5 +1,10 @@
 package com.recycler.mvvmbasepackapplication.utils
 
+/**
+ * created By Jishnu P Dileep
+ * 01-12-2020
+ * */
+
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 
     companion object {
