@@ -1,5 +1,7 @@
 package com.recycler.mvvmbasepackapplication.data.repository
 
+import com.recycler.mvvmbasepackapplication.data.local.StudentDao
+import com.recycler.mvvmbasepackapplication.data.local.model.StudentModel
 import com.recycler.mvvmbasepackapplication.data.remote.ApiHelper
 import javax.inject.Inject
 
@@ -9,7 +11,8 @@ import javax.inject.Inject
  * */
 
 
-class ApplicationRepository @Inject constructor(private val apiHelper: ApiHelper) {
+class ApplicationRepository @Inject constructor(private val apiHelper: ApiHelper, private val studentDao: StudentDao) {
 
     suspend fun getUsers() =  apiHelper.getUsers()
+    suspend fun insertStudent(studentModel: StudentModel):Long=studentDao.insert(studentModel)
 }

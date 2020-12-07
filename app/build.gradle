@@ -16,8 +16,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-      //  buildConfigField 'String', 'BASE_URL', '"https://5e510330f2c0d300147c034c.mockapi.io/"'
-
         buildConfigField "String", "BASE_URL", "\"https://5e510330f2c0d300147c034c.mockapi.io/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -87,6 +85,11 @@ dependencies {
 
     //Toastfy
     implementation 'com.github.GrenderG:Toasty:1.5.0'
+
+    //Room
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5"
+    androidTestImplementation "androidx.room:room-testing:2.2.5"
 
 
 }

@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
             when (it.status) {
                 Status.SUCCESS -> {
 
-
                 }
                 Status.LOADING -> {
 
