@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/user_photo"
@@ -30,7 +30,8 @@
             app:layout_constraintStart_toEndOf="@+id/user_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{item.name}"
+            android:text="Hell"
+            android:textColor="@color/black"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="14dp"
             android:layout_marginStart="14dp"
