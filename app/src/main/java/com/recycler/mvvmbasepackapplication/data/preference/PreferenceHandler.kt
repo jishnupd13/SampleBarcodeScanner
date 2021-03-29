@@ -3,13 +3,14 @@ package com.recycler.mvvmbasepackapplication.data.preference
 import android.content.Context
 import android.content.SharedPreferences
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * created By Jishnu P Dileep
  * 01-12-2020
  * */
 
-
+@Singleton
 class PreferenceHandler @Inject constructor(context: Context){
     var sharedpreferences: SharedPreferences = context.getSharedPreferences("MyPreference", Context.MODE_PRIVATE)
     var editor: SharedPreferences.Editor = sharedpreferences.edit()

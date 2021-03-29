@@ -9,11 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.recycler.mvvmbasepackapplication.R
 import com.recycler.mvvmbasepackapplication.data.models.User
+import com.recycler.mvvmbasepackapplication.data.preference.PreferenceHandler
 import com.recycler.mvvmbasepackapplication.databinding.ActivityMainBinding
 import com.recycler.mvvmbasepackapplication.ui.adapters.MainAdapter
 import com.recycler.mvvmbasepackapplication.utils.Status
+import com.recycler.mvvmbasepackapplication.utils.StylishToastUtils
+import com.recycler.mvvmbasepackapplication.utils.ToastUtils
 import com.recycler.mvvmbasepackapplication.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /**
@@ -28,11 +32,23 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
+
+    @Inject lateinit var logger: PreferenceHandler
+    @Inject lateinit var toastUtils: ToastUtils
+    @Inject lateinit var stylishToastUtils: StylishToastUtils
+
+
+
     private var userList= arrayListOf<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+   //     logger.getBoolean("hiii")
+
+        toastUtils.showToast("Hello world")
+        stylishToastUtils.showErrorToast("Hello world")
 
         mainViewModel.users.observe(this, Observer {
             when (it.status) {

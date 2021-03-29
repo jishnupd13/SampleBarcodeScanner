@@ -79,4 +79,9 @@ class ApplicationModule {
     fun provideYourDao(db: AppDatabase) = db.getYourDao() // The reason we can implement a Dao for the database
 
 
+    @Provides
+    fun provideContext(@ApplicationContext appContext: Context): Context {
+        return appContext
+    }
+
 }
