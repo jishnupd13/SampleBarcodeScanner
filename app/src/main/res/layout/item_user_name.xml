@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.recycler.mvvmbasepackapplication.data.models.User" />
+            type="com.spellknight.barcodescanner.data.models.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

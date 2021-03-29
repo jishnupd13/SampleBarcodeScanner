@@ -15,6 +15,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         buildConfigField "String", "BASE_URL", "\"https://5e510330f2c0d300147c034c.mockapi.io/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -89,6 +90,14 @@ dependencies {
     //Room
     implementation "android.arch.persistence.room:runtime:1.1.1"
     kapt "android.arch.persistence.room:compiler:1.1.1"
+
+    //Barcode Scanner
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'info.androidhive:barcode-reader:1.1.5'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
 
 
 }
