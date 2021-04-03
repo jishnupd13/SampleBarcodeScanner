@@ -1,5 +1,8 @@
 package com.spellknight.barcodescanner.ui.activities
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -7,10 +10,13 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.zxing.Result
 import com.spellknight.barcodescanner.R
 import com.spellknight.barcodescanner.data.preference.PreferenceHandler
@@ -31,6 +37,9 @@ class BarcodeReadingActivity : AppCompatActivity(),
     private lateinit var binding: ActivityBarcodeReadingBinding
 
     private val TAG = "BarcodeReadingActivity"
+
+    private val MY_PERMISSIONS_REQUEST_CAMERA = 0
+
 
     var doubleBackToExitPressedOnce = false
 
@@ -55,15 +64,30 @@ class BarcodeReadingActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         // binding = DataBindingUtil.setContentView(this, R.layout.activity_barcode_reading)
         // barcodeReader= supportFragmentManager.findFragmentById(R.id.barcode_fragment) as BarcodeReader
-        mScannerView = ZXingScannerView(this)
+
+        // mScannerView = ZXingScannerView(this)
         //mScannerView?.flash=true
-        mScannerView?.setAutoFocus(true)
-        setContentView(mScannerView)
+        //  mScannerView?.setAutoFocus(true)
+        //  setContentView(mScannerView)
 
 
-        countDownTimer= object : CountDownTimer(10000, 1000) {
+        if (checkPermission()) {
+            //main logic or main code
+
+            // . write your main code to execute, It will execute if the permission is already given.
+
+            mScannerView = ZXingScannerView(this)
+            setContentView(mScannerView)
+
+        } else {
+            requestPermission();
+        }
+
+
+
+        countDownTimer = object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                Log.e(TAG,"TICK TICK")
+                Log.e(TAG, "TICK TICK")
             }
 
             override fun onFinish() {
@@ -104,7 +128,7 @@ class BarcodeReadingActivity : AppCompatActivity(),
         btnCloseImage.setOnClickListener {
             dialog.dismiss()
             finish()
-            overridePendingTransition(0,0)
+            overridePendingTransition(0, 0)
         }
 
         buttonScanAgain.setOnClickListener {
@@ -175,4 +199,49 @@ class BarcodeReadingActivity : AppCompatActivity(),
         this.doubleBackToExitPressedOnce = true
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
+
+
+    private fun checkPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.CAMERA),
+            MY_PERMISSIONS_REQUEST_CAMERA
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+
+            MY_PERMISSIONS_REQUEST_CAMERA -> {
+
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(applicationContext, "Permission Granted", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Permission Denied! you need to tick access to this! Else it does not work ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                            != PackageManager.PERMISSION_GRANTED
+                        ) {
+                            requestPermission()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
